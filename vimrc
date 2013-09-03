@@ -65,6 +65,7 @@ set ignorecase 		" 搜索时忽略大小写
 "vundle 
 set rtp+=~/.vim/bundle/vundle/    "PATH
 call vundle#rc()
+Bundle 'tpope/vim-pathogen'
 Bundle 'gmarik/vundle'
 Bundle 'SirVer/ultisnips'
 Bundle 'kien/ctrlp.vim'
