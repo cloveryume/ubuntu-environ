@@ -45,9 +45,9 @@ syntax on
 syntax enable					" 开启语法高亮
 set completeopt=longest,menu	" 自动补全设置
 set foldmethod=syntax			" 选择代码折叠类型
-set foldlevel=100			" 启动vim时不要自动折叠代码
-set showmatch           	" 插入括号时，短暂地跳转到匹配的对应括号
-set matchtime=2         	" 短暂跳转到匹配括号的时间
+set foldlevel=100				" 启动vim时不要自动折叠代码
+set showmatch           		" 插入括号时，短暂地跳转到匹配的对应括号
+set matchtime=2         		" 短暂跳转到匹配括号的时间
 
 
 
@@ -69,6 +69,7 @@ Bundle 'tpope/vim-pathogen'
 Bundle 'gmarik/vundle'
 Bundle 'SirVer/ultisnips'
 Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/winmanager'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-scripts/taglist.vim'
@@ -77,12 +78,6 @@ Bundle 'altercation/vim-colors-solarized'
 
 "pathogen.vim
 execute pathogen#infect()
-
-"Tlist
-let Tlist_File_Fold_Auto_Close=1
-let Tlist_Auto_Open=0
-let Tlist_Exit_OnlyWindow=1
-"let Tlist_Use_Right_Window = 1  
 
 "powerline
 set guifont=FZSXSLKJW\ for\ Powerline
@@ -100,21 +95,49 @@ let g:ctrlp_custom_ignore = {
   \ }
 "let g:ctrlp_user_command = 'find %s -type f'
 
+
+"Tlist
+let Tlist_File_Fold_Auto_Close=0
+let Tlist_Auto_Open=0
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Show_Menu=1
+
+"NERDTree
+let g:NERDTree_title = '[NERD Tree]'
+function! NERDTree_Start() 
+	exe 'NERDTree' 
+endfunction 
+function! NERDTree_IsValid() 
+	return 1 
+endfunction
+
+"winManager
+let g:winManagerWindowLayout='NERDTree|TagList' 
+let g:winManagerWidth = 30
+"nnoremap <F3> :WMToggle<CR>
+nnoremap <F3> :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
+
+
 "---------------------------
 " 	键盘映射和快捷键
 "---------------------------
 
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
                             " 用空格键来开关折叠
-nnoremap <C-w> <C-w>w			" 设置切换窗口快捷键
-nnoremap <F3> :TlistToggle<CR>		" 设置显示标签列表子窗口的快捷键。
+nnoremap <C-w> <C-w>w				" 设置切换窗口快捷键
+
+"tab选项卡快捷键
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-h> :tabp<CR>
+nnoremap <C-l> :tabn<CR>
+nnoremap <C-x> :tabclose<CR>
 
 
 "按F5 编译当前文件
 func Compile()
 if &filetype == 'c'
 exec "w"
-exec "!gcc % -g -o %<.o"
+exec "!gcc % -g -o %<"
 endif
 endfunc
 map <F5> :call Compile()<CR>
@@ -123,7 +146,7 @@ map <F5> :call Compile()<CR>
 map <F6> :call Run()<CR>
 func Run()
 if &filetype == 'c'
-exec "!./%<.o"
+exec "!./%<"
 endif
 if &filetype == 'python'
 exec "w"
