@@ -76,6 +76,7 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
 
+
 "pathogen.vim
 execute pathogen#infect()
 
@@ -101,6 +102,7 @@ let Tlist_File_Fold_Auto_Close=0
 let Tlist_Auto_Open=0
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Show_Menu=1
+let Tlist_WinHeight = 40
 
 "NERDTree
 let g:NERDTree_title = '[NERD Tree]'
@@ -110,12 +112,37 @@ endfunction
 function! NERDTree_IsValid() 
 	return 1 
 endfunction
+"NERDTree-auto close nerdtree when vim quit
+autocmd WinEnter * call s:CloseIfOnlyNerdTreeLeft()
+function! s:CloseIfOnlyNerdTreeLeft()
+	if exists("t:NERDTreeBufName")
+		if bufwinnr(t:NERDTreeBufName) != -1
+			if winnr("$") == 1
+				q
+			elseif winnr("$") == 2
+				if bufwinnr("__Tag_List__") != -1
+					q
+				endif
+			endif
+		endif
+	endif
+endfunction
 
 "winManager
 let g:winManagerWindowLayout='NERDTree|TagList' 
 let g:winManagerWidth = 30
-"nnoremap <F3> :WMToggle<CR>
-nnoremap <F3> :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR><CR>
+
+func ToggleWM()
+if IsWinManagerVisible()
+	exec "WMToggle"
+else
+	exec "WMToggle"
+	exec "q"
+endif
+endfunc
+
+nnoremap <F3> :call ToggleWM()<CR>
+autocmd VimEnter *.c,*.h,*.cpp call ToggleWM() 
 
 
 "---------------------------
