@@ -49,7 +49,7 @@ set foldlevel=100				" 启动vim时不要自动折叠代码
 set showmatch           		" 插入括号时，短暂地跳转到匹配的对应括号
 set matchtime=2         		" 短暂跳转到匹配括号的时间
 
-
+set backspace=indent,eol,start
 
 "---------------------------
 " 	搜索
