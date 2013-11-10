@@ -13,5 +13,6 @@ ln -sf  $ROOTPATH"/bundle/vim-pathogen/autoload/pathogen.vim" \
 	 $ROOTPATH"/autoload/pathogen.vim"
 
 #config Powerline fonts
+mkdir ~/.fonts
 cp -r FZSXSLKJW-Powerline.TTF ~/.fonts
 sudo fc-cache -vf

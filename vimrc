@@ -75,7 +75,13 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'Valloric/YouCompleteMe'
 
+
+"YouCompleteMe 
+let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+let g:SuperTabDefaultCompletionType = 'C-Tab>'
 
 "pathogen.vim
 execute pathogen#infect()
