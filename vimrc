@@ -32,7 +32,9 @@ set smartindent 		" 智能对齐方式
 set autoindent 			" 自动对齐
 set tabstop=4			" 设置Tab为四个空格
 set shiftwidth=4		" 自动缩进
-set noexpandtab			" 不要Tab键使用空格键替代
+"set noexpandtab			" 不要Tab键使用空格键替代
+set expandtab
+set softtabstop=4       " 退格键退回缩进长度，设置expandtab时有效
 set nowrap				" 不要换行
 set number				" 开启行号显示
 set cursorline          " 突出显示当前行
@@ -76,7 +78,7 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'Valloric/YouCompleteMe'
-
+Bundle 'vim-scripts/autoload_cscope.vim'
 
 "YouCompleteMe 
 let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
@@ -172,6 +174,10 @@ if &filetype == 'c'
 exec "w"
 exec "!gcc % -g -o %<"
 endif
+if &filetype == 'cpp'
+exec "w"
+exec "!g++ % -g -o %<"
+endif
 endfunc
 map <F5> :call Compile()<CR>
 
@@ -179,6 +185,9 @@ map <F5> :call Compile()<CR>
 map <F6> :call Run()<CR>
 func Run()
 if &filetype == 'c'
+exec "!./%<"
+endif
+if &filetype == 'cpp'
 exec "!./%<"
 endif
 if &filetype == 'python'
