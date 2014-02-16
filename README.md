@@ -1,6 +1,6 @@
 * My Vim Setting Backup
 
-git clone git://github.com/cloveryume/VimSettings.git
+git clone git://github.com/cloveryume/vimsettings.git
 
 run script PreBundleInst.sh
 
