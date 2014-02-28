@@ -84,6 +84,9 @@ Bundle 'vim-scripts/autoload_cscope.vim'
 let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 let g:SuperTabDefaultCompletionType = 'C-Tab>'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_tags_files = 1 
+let g:ycm_seed_identifiers_with_syntax = 1 
 
 "pathogen.vim
 execute pathogen#infect()
