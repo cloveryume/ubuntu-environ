@@ -69,7 +69,7 @@ set rtp+=~/.vim/bundle/vundle/    "PATH
 call vundle#rc()
 Bundle 'tpope/vim-pathogen'
 Bundle 'gmarik/vundle'
-Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/winmanager'
 Bundle 'scrooloose/nerdtree'
