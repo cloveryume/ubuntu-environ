@@ -3,7 +3,7 @@ export LD_LIBRARY_PATH=.:/usr/local/lib:$LD_LIBRARY_PATH
 export TERM=xterm-256color
 eval `dircolors ~/.dircolors.256dark`
 
-export PS1='${debian_chroot:+($debian_chroot)}\[\033[00;35m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[00;35m\]\u@\h\[\033[00m\]:\[\033[00;36m\]\w\[\033[00m\]\$ '
                                                                                                                                                                                                                   
 export LESS_TERMCAP_mb=$'\E[0;31m' # begin blinking 
 export LESS_TERMCAP_md=$'\E[00;35m' # begin bold
